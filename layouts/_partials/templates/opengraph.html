@@ -1,4 +1,8 @@
-<meta property="og:url" content="{{ .Permalink }}">
+{{- $pageURL := .Permalink -}}
+{{- if in (slice "home" "section" "taxonomy" "term") .Kind -}}
+{{- $pageURL = .Paginator.URL | absURL -}}
+{{- end -}}
+<meta property="og:url" content="{{ $pageURL }}">
 
 {{- with or site.Title site.Params.title | plainify }}
   <meta property="og:site_name" content="{{ . }}">
